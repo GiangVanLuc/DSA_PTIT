@@ -1,38 +1,39 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
+using ll = long long;
 int main(){
-	int t; cin >> t;
+	int t;cin >> t;
 	while(t--){
-		int n1,n2,n3; cin >> n1 >> n2 >> n3;
-		map<int,int> mp1,mp2,mp3;
-		
-		set<int> se;
-		for(int i = 0; i < n1; i++){
-			int x; cin >> x;
-			mp1[x]++;
-			se.insert(x);
-		}
-		for(int i = 0; i < n2; i++){
-			int x; cin >> x;
-			mp2[x]++;
-			se.insert(x);
-		}
-		for(int i = 0; i < n3; i++){
-			int x; cin >> x;
-			mp3[x]++;
-			se.insert(x);
-		}
-		for(auto x: se) cout << x <<" ";
-		int check = 0;
-		for(auto x: se){
-			if(mp1[x] > 0 && mp2[x] > 0 && mp3[x] > 0){
-				cout << x << " ";
-				check = 1;
+		int n,m,p;
+		cin >> n >> m >> p;
+		vector<ll> a(n), b(m), c(p);
+		for(int i =0 ; i < n;i++) cin >> a[i];
+		for(int i = 0; i < m; i++) cin >> b[i];
+		for(int i = 0; i < p; i++) cin >> c[i];
+		int i = 0, j = 0, k =0;
+		vector<ll> res;
+		while(i < n && j < m && k < p){
+			if(a[i] == b[j] && a[i] == c[k]){
+				res.push_back(a[i]);
+				i++;++j;k++;
 			}
+			else if(a[i] < b[j]){
+				++i;
+			}
+			else if(b[j] < c[k]){
+				++j;
+			}
+			else ++k;
 		}
-		if(check == 0) cout << - 1 << endl; 
-		else cout << endl;
+		if(res.empty()){
+			cout << -1 << endl;
+		}
+		else{
+			for(auto x: res){
+				cout << x << " ";
+			}
+			cout << endl;
+		}
 	}
 }

@@ -1,21 +1,18 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int x;
-bool cmp(int a,int b){
-	return abs(a-x) < abs(b-x);
-}
+
 int main(){
 	int t; cin >> t;
 	while(t--){
-		int n;
-		cin >> n >> x;
+		int n, k; cin >> n >> k;
 		int a[n];
 		for(int i = 0; i < n; i++){
 			cin >> a[i];
 		}
-		stable_sort(a,a+n,cmp);
-		for(int i = 0; i < n; i++) cout << a[i] <<" ";
+		for(int i = 0; i < n - k + 1; i++){
+			cout << *max_element(a+i,a+i+k) <<" ";
+		}
 		cout << endl;
 	}
 }

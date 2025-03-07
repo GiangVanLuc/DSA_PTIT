@@ -1,39 +1,35 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+vector<string> v;
 
-int main(){
-	int n, m; cin >> n >> m;
-	int h[1000]={0}, c[1000]={0};
-	char a[50][50];
-	for(int i = 1; i <= n ; i++){
-		for(int j = 1; j <= m; j++){
-			cin >> a[i][j];
+int dx[4] = {-1,0,1,0};
+int dy[4] = {0,1,0,-1};
+int n,m; 
+
+void loang(int i,int j){
+	v[i][j] = '.';
+	for(int k = 0; k < 4; k++){
+		int i1 = i + dx[k];
+		int j1 = j + dy[k];
+		if(i1 >= 0 && i1 < n && j1 >= 0 && j1 < m && v[i1][j1] == '#'){
+			loang(i1,j1);
 		}
 	}
-	for(int i = 1; i <= n; i++){
-		for(int j = 1; j <= m; j++){
-			if(a[i][j] == '#'){
-				c[j]++;
-				h[i]++;
+}
+int main(){
+	cin >> n >> m;
+	v.resize(n);
+	for(string &x: v) cin >> x;
+	int cnt = 0;
+	for(int i = 0; i < n;i++){
+		for(int j = 0; j < m; j++){
+			if(v[i][j] == '#'){
+				cnt++;
+				loang(i,j);
 			}
 		}
 	}
-	int cnt1= 0, cnt2 =0 ;
-	int ans = 0;
-	for(int i = 1; i <= n; i++){
-		if(h[i] != 0){
-			cnt1++;
-			ans = max(ans, cnt1);
-		}
-		else cnt1 = 0;
-	}
-	for(int i = 1; i <= m; i++){
-		if(c[i] != 0){
-			cnt2++;
-			ans = max(ans,cnt2);
-		}
-		else cnt2= 0;
-	}
-	cout << ans << endl;
+	cout << cnt << endl;
+		
 }
