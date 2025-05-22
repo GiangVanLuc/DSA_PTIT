@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
-uisng namespace std;
+using namespace std;
+using ll = long long;
 vector<string> ans;
 int n,a[100], X[100];
 
@@ -27,7 +28,7 @@ void Try(int i, int pos){
 	}
 }
 int main(){
-	int t; cin >> t;
+	int t = 1;
 	while(t--){
 		nhap();
 		Try(1,1);

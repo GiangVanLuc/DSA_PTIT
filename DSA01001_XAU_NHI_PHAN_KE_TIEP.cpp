@@ -2,6 +2,7 @@
 
 using namespace std;
 string s; 
+// ham sinh ra cau hinh ke tiep
 void sinh(){
 	int i = s.size() - 1;
 	while(i >= 0 && s[i] == '1'){

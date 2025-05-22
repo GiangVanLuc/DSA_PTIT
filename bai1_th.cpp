@@ -1,26 +1,48 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int n, c1[100],d1[100],d2[100];
-int cnt = 0, X[100];
+int a[101];
+int n, ok;
+int k;
+string s;
 
-void Try(int i){
-	for(int j = 1; j <= n; j++){
-		if(c1[j] == false && d1[i - j + 1] == false && d2[i + j - n] == false){
-			X[i] = j;
-			c1[j] = d1[i - j + 1] = d2[i + j - n] = true;
-			if(i == n){
-				++cnt;
-			}
-			else{
-				Try(i+1);
-			}
-			c1[j] = d1[i - j + 1] = d2[i + j - n] = false;
+void sinh(){
+	int i = k;
+	while(i >= 1 && a[i] == n - k + i){
+		i--;
+	}
+	if(i == 0) ok = 0;
+	else{
+		a[i]++;
+		for(int j = i + 1; j <= k; j++){
+			a[j] = a[j - 1] + 1;
 		}
 	}
+	
 }
+int b[101];
+
 int main(){
-	cin >> n;
-	Try(1);
-	cout << cnt << endl;
+	int t; cin >> t;
+	while(t--){
+		cin >> n >> k;
+		ok = 1;
+		set<int> se;
+		for(int i = 1; i <= k; i++){
+			cin >> a[i];
+			se.insert(a[i]);
+		}
+		sinh();
+		if(ok == 0) cout << k;
+		else{
+			int cnt = 0;
+			for(int i = 1; i <= k; i++){
+				if(!se.count(a[i])){
+					cnt++;
+				}
+			}
+			cout << cnt;
+		}
+		cout << endl;
+	}
 }

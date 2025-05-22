@@ -11,7 +11,6 @@ void sinh(){
 	for(int j = i + 1; j <= k; j++){
 		a[j] = a[j-1] + 1;
 	}
-	
 }
 int check(){
 	for(int i = 1; i <= k ;i++){

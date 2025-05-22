@@ -1,20 +1,12 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int check(string s)
-{
-	for(int i = 0; i < s.size(); i++){
-		if(s[i] == '1'){
-			return 0;
-		}
-	}
-	return 1;
-}
+
 int main(){
 	int t;cin >> t;
 	while(t--){
 		string s; cin >> s;
-		int i = s.size()- 1;
+		int i = s.size();
 		while(i--){
 			if(s[i] == '1'){
 				s[i] = '0';

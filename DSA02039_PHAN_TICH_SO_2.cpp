@@ -32,7 +32,8 @@ int main(){
 				if(i != it.size() - 1) cout << " ";
 				else cout <<") ";
 			}
-			cout << endl;
+			cout << " ";
 		}
+		cout << endl;
 	}
 }

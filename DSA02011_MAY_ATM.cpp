@@ -1,42 +1,37 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-int n, S, a[100], X[100], k,ok;
-void Try(int i){
-	for(int j = X[i-1] + 1; j <= n - k + i; j++){
-		X[i] = j;
-		if(i == k){
-			// tinh tong tien cac to tien duoc chon
-			int sum = 0;
-			for(int j = 1; j <= k; j++){
-				sum += a[X[i]];
+using ll = long long;
+int n , k, a[100],X[100];
+int check = 0;
+int res;
+void Try(int i, int pos,ll sum){
+	for(int j = pos; j <= n; j++){
+		if(sum + a[j] > k) return;
+		X[i] = a[j];
+		if(sum + a[j] == k){
+			int dem = 0;
+			for(int l = 1; l <= i; l++){
+				dem++;
 			}
-			if(sum == S){
-				ok = true;
+			if(res > dem){
+				res = dem;
 			}
 		}
-		else Try(i+1);
+		else Try(i+1,j+1, sum + a[j]);
 	}
 }
-void inp(){
-	cin >> n >> S;
-	for(int i = 1; i <= n; i++) cin >> a[i];
-	sort(a + 1, a + n + 1,greater<int>());
-	for(int i= 1; i <= n; i++){
-		k = i;
-		Try(1);
-		if(ok){
-			cout << i << endl; return;
-		}
-	}
-	cout << "-1" << endl;
-	
-}
-
-
 int main(){
 	int t; cin >> t;
 	while(t--){
-		inp();
+		res = INT_MAX;
+		cin >> n >> k;
+	 	for(int i = 1; i <= n; i++) cin >> a[i];
+	 	sort(a+1,a+n+1);
+	 	Try(1,1,0);
+	 	if(res == INT_MAX){
+	 		cout << "-1\n";
+		}
+		else cout << res << endl;
 	}
 }

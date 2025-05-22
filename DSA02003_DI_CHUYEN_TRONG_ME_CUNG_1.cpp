@@ -34,6 +34,7 @@ int main(){
 				cin >> a[i][j];
 			}
 		}
+		// luu y truong hop xuat phat tu diem la so 0
 		if(a[1][1] == 0) cout << -1;
 		else{
 			Try(1,1);
